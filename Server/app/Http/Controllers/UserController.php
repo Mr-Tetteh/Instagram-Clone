@@ -54,9 +54,9 @@ class UserController extends Controller
     public function login(Request $request)
     {
         try{
-            $user = User::where('email', $request->email)
-                ->orWhere('phone', $request->phone)
-                ->orWhere('username', $request->username)
+            $user = User::where('email', $request->identifier)
+                ->orWhere('phone', $request->identifier)
+                ->orWhere('username', $request->identifier)
                 ->first();
 
            if (!$user || !Hash::check($request->input('password'), $user->password)) {

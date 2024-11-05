@@ -1,16 +1,27 @@
 <script setup>
 import {reactive} from "vue";
+import axios from "axios";
+import {useRouter} from "vue-router";
 
 const state = reactive({
   formInput:{
-    input: '',
+    identifier: '',
     password: ''
   }
 })
 
-const login = () =>{
+const Route = useRouter()
+const login = async () =>{
   try{
-    const response =
+    const response = await axios.post('http://127.0.0.1:8002/api/login', state.formInput)
+    const token = response.data.authorisation.token
+    localStorage.setItem("AUTH_TOKEN", token)
+    localStorage.setItem("USERNAME", response.data.user.username)
+    localStorage.setItem("PHONE", response.data.user.phone)
+    localStorage.setItem("FULL_NAME", response.data.user.full_name)
+    Route.push('/')
+  }catch (err){
+    alert(err.response.data.message)
   }
 }
 </script>
@@ -25,27 +36,23 @@ const login = () =>{
 
     <!-- Form Container -->
     <div class="p-4 lg:p-2">
+      <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm border border-gray-300 rounded-lg  p-10 pt-20  pb-20 shadow-lg bg-white">
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Instagram
+          Instagram Clone
         </h2>
       </div>
 
-      <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="border-solid" @submit.prevent="login">
+        <form class="border-solid " @submit.prevent="login">
 
             <div class="mt-3">
               <input id="email" type="text" autocomplete="email" required placeholder="Phone number, username or email address"
-                    v-model="state.formInput.input"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    v-model="state.formInput.identifier"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
 
             <div class="mt-3">
               <input id="password" type="password" required placeholder="Password"
                     v-model="state.formInput.password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            </div>
-
-            <div class="text-sm text-right mt-2">
-              <router-link to="forgot_password" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</router-link>
             </div>
 
             <div class="mt-4">
@@ -55,14 +62,23 @@ const login = () =>{
               </button>
             </div>
 
-        </form>
 
-        <p class="mt-4 text-center text-sm text-gray-500">
-          Not a member?
-          <router-link to="register" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register Now!</router-link>
+          <div class=" ml-20 mt-5">
+            <router-link to="forgot_password" class=" text-sky-500 hover:text-indigo-500">Forgot password?</router-link>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm border border-gray-300 rounded-lg  p-5 shadow-lg bg-white">
+
+        <p class="mt-4 text-center text-sm">
+         Don't have an account?
+          <router-link to="register" class="leading-6 text-sky-500 hover:text-indigo-500">Signup up</router-link>
         </p>
       </div>
     </div>
+
   </div>
 
 </template>
