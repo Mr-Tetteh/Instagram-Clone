@@ -34,7 +34,6 @@ const login = async () =>{
       <img src="/login.jpg" alt="Login Image" class="max-w-full h-auto lg:max-w-md lg:m-0 " />
     </div>
 
-    <!-- Form Container -->
     <div class="p-4 lg:p-2">
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm border border-gray-300 rounded-lg  p-10 pt-20  pb-20 shadow-lg bg-white">
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
