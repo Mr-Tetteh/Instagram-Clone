@@ -80,11 +80,21 @@ class UserController extends Controller
 
     }
 
+
     public function user()
     {
        return Auth::user();
 
     }
+
+    public function logout()
+    {
+        Auth::user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Logout Successful'
+        ]);
+    }
+
     /**
      * Display the specified resource.
      */
