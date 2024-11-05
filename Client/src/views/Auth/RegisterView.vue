@@ -20,7 +20,7 @@ const register = async () =>{
     const response =  await axios.post(`http://127.0.0.1:8002/api/register`, state.formInput)
     await Router.push('login')
   }catch (err){
-    alert(err.data.message)
+    alert(err.response.data.message)
   }
 }
 

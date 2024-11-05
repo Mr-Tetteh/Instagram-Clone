@@ -36,19 +36,29 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        if (User::all()->where('email', $request->email)->first()) {
+        if (User::where('email', $request->email)->first()) {
             return response()->json([
-                'message' => 'Sorry Email already exists'
+                'message' => 'Sorry, Email already exists'
             ], 402);
+        } elseif (User::where('phone', $request->phone)->first()) {
+            return response()->json([
+                'message' => 'Sorry, Phone number already exists'
+            ],402);
+        } elseif (User::where('username', $request->username)->first()) {
+            return response()->json([
+                'message' => 'Sorry, Username already exists'
+            ],402);
         }
+
         $user = User::create([
-           'full_name' => $request->input('full_name'),
+            'full_name' => $request->input('full_name'),
             'email' => $request->input('email'),
-            'password' => Hash::make ($request->input('password')),
+            'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone'),
-            'username'=> $request->input('username'),
+            'username' => $request->input('username'),
         ]);
-        return  new UserResource($user);
+
+        return new UserResource($user);
     }
 
     public function login(Request $request)
