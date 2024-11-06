@@ -8,7 +8,7 @@ import StepPanel from 'primevue/steppanel';
 import Button from 'primevue/button';
 import FileUpload from 'primevue/fileupload';
 
-import {ref} from 'vue';
+import {reactive, ref} from 'vue';
 import {TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle} from '@headlessui/vue';
 import {useToast} from 'primevue/usetoast';
 
@@ -22,9 +22,22 @@ function openModal() {
   isOpen.value = true;
 }
 
-const toast = useToast();
+const state = reactive({
+  formInput: {
+    image: '',
+    title: '',
+    slug: '',
+    post: '',
+    location: ''
 
+  }
 
+})
+
+const post = () =>{
+
+  console.log('post')
+}
 </script>
 
 <template>
@@ -72,59 +85,64 @@ const toast = useToast();
               <div class="p-6">
                 <Stepper value="1">
                   <StepList>
-                    <Step value="1">Header I</Step>
-                    <Step value="2">Header II</Step>
+                    <Step>Upload Picture</Step>
+                    <Step>About Picture</Step>
                   </StepList>
+                  <form @submit.prevent="post">
 
-                  <StepPanels>
-                    <StepPanel v-slot="{ activateCallback }" value="1">
-                      <div
-                          class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
-                        <FileUpload name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000">
-                          <template #empty>
-                            <span>Drag and drop files here to upload.</span>
-                          </template>
-                        </FileUpload>
-                      </div>
-                      <div class="flex pt-6 justify-end">
-                        <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')"/>
-                      </div>
-                    </StepPanel>
+                    <StepPanels>
+                      <StepPanel v-slot="{ activateCallback }" value="1">
+                        <div
+                            class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
+                          <FileUpload v-model="state.formInput.image" name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000">
+                            <template #empty>
+                              <span>Drag and drop files here to upload.</span>
+                            </template>
+                          </FileUpload>
+                        </div>
+                        <div class="flex pt-6 justify-end">
+                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')"/>
+                        </div>
+                      </StepPanel>
 
-                    <StepPanel v-slot="{ activateCallback }" value="2">
-                      <div
-                          class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
-                        <p>
+                      <StepPanel v-slot="{ activateCallback }" value="2">
+                        <div
+                            class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
+                          <p>
 
-                          <input type="text"
-                                 class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                                 placeholder="title">
+                            <input type="text"
+                                   class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                                   placeholder="title">
 
-                          <textarea name="" id=""
-                                    class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                                    placeholder="Write anything here"></textarea>
+                            <textarea name="" id="" v-model="state.formInput.post"
+                                      class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                                      placeholder="Write anything here"></textarea>
 
-                          <input
-                              type="text"
-                              placeholder="Add location"
-                              class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                          />
-                        </p>
-                      </div>
-                      <div class="flex pt-6 justify-between">
-                        <button
-                            class="w-full p-3 border rounded-md focus:outline-none focus:ring-1 shadow-sm text-gray-900 bg-blue-300 hover:bg-gray-500"
-                        >Submit
-                        </button>
-                      </div>
-                    </StepPanel>
+                            <input
+                                v-model="state.formInput.location"
+                                type="text"
+                                placeholder="Add location"
+                                class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                            />
+                          </p>
+                        </div>
+                        <div class="flex pt-6 justify-between">
+                          <button
+                              class="w-full p-3 border rounded-md focus:outline-none focus:ring-1 shadow-sm text-gray-900 bg-blue-300 hover:bg-gray-100"
+                          >Submit
+                          </button>
+                        </div>
 
-                  </StepPanels>
+                      </StepPanel>
+                    </StepPanels>
+                  </form>
                 </Stepper>
+
               </div>
             </DialogPanel>
           </TransitionChild>
         </div>
+
       </div>
     </Dialog>
   </TransitionRoot>
