@@ -1,4 +1,13 @@
 <script setup>
+import Post from "@/components/Post.vue";
+import {ref} from "vue";
+
+
+const showPost = ref(false)
+
+const togglePost = () => {
+  showPost.value = !showPost.value;
+};
 
 </script>
 
@@ -74,13 +83,15 @@
         </li>
 
         <li>
-          <a
+          <a @click="togglePost"
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20">
               <path d="M576 64c0-35.3-28.7-64-64-64H64C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V64zM288 288H192v96c0 8.5-6.5 16-16 16s-16-7.5-16-16v-96h-96c-8.5 0-16-6.5-16-16s7.5-16 16-16h96v-96c0-8.5 6.5-16 16-16s16 7.5 16 16v96h96c8.5 0 16 6.5 16 16s-7.5 16-16 16z" fill="#D3D3D3"/>
             </svg>
             <span class="ml-3">Create</span>
+
           </a>
+
         </li>
 
 
@@ -99,12 +110,14 @@
           </a>
         </li>
 
-
       </ul>
 
-
     </div>
+
   </aside>
+<div v-if="showPost">
+  <Post/>
+</div>
 
 </template>
 
