@@ -1,4 +1,16 @@
 <script setup>
+
+
+import Stepper from 'primevue/stepper';
+import StepList from 'primevue/steplist';
+import StepPanels from 'primevue/steppanels';
+import StepItem from 'primevue/stepitem';
+import Step from 'primevue/step';
+import StepPanel from 'primevue/steppanel';
+import Button from 'primevue/button';
+
+
+
 import { ref } from 'vue'
 import {
   TransitionRoot,
@@ -67,20 +79,43 @@ function openModal() {
               </DialogTitle>
               <div class="mt-2">
                 <p class="text-sm text-gray-500">
-                  Your payment has been successfully submitted. We’ve sent you
-                  an email with all of the details of your order.
+                  <Stepper value="1">
+                    <StepList>
+                      <Step value="1">Header I</Step>
+                      <Step value="2">Header II</Step>
+                      <Step value="3">Header III</Step>
+                    </StepList>
+                    <StepPanels>
+                      <StepPanel v-slot="{ activateCallback }" value="1">
+                        <div class="flex flex-col h-48">
+                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content I</div>
+                        </div>
+                        <div class="flex pt-6 justify-end">
+                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')" />
+                        </div>
+                      </StepPanel>
+                      <StepPanel v-slot="{ activateCallback }" value="2">
+                        <div class="flex flex-col h-48">
+                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content II</div>
+                        </div>
+                        <div class="flex pt-6 justify-between">
+                          <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('1')" />
+                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('3')" />
+                        </div>
+                      </StepPanel>
+                      <StepPanel v-slot="{ activateCallback }" value="3">
+                        <div class="flex flex-col h-48">
+                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content III</div>
+                        </div>
+                        <div class="pt-6">
+                          <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('2')" />
+                        </div>
+                      </StepPanel>
+                    </StepPanels>
+                  </Stepper>
                 </p>
               </div>
 
-              <div class="mt-4">
-                <button
-                    type="button"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    @click="closeModal"
-                >
-                  Got it, thanks!
-                </button>
-              </div>
             </DialogPanel>
           </TransitionChild>
         </div>
