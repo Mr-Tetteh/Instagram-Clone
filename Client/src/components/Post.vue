@@ -1,6 +1,4 @@
 <script setup>
-
-
 import Stepper from 'primevue/stepper';
 import StepList from 'primevue/steplist';
 import StepPanels from 'primevue/steppanels';
@@ -8,26 +6,24 @@ import StepItem from 'primevue/stepitem';
 import Step from 'primevue/step';
 import StepPanel from 'primevue/steppanel';
 import Button from 'primevue/button';
+import FileUpload from 'primevue/fileupload';
 
+import {ref} from 'vue';
+import {TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle} from '@headlessui/vue';
+import {useToast} from 'primevue/usetoast';
 
-
-import { ref } from 'vue'
-import {
-  TransitionRoot,
-  TransitionChild,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-} from '@headlessui/vue'
-
-const isOpen = ref(true)
+const isOpen = ref(true);
 
 function closeModal() {
-  isOpen.value = false
+  isOpen.value = false;
 }
+
 function openModal() {
-  isOpen.value = true
+  isOpen.value = true;
 }
+
+const toast = useToast();
+
 
 </script>
 
@@ -36,11 +32,12 @@ function openModal() {
     <button
         type="button"
         @click="openModal"
-        class="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        class="rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
     >
       Open dialog
     </button>
   </div>
+
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-10">
       <TransitionChild
@@ -52,13 +49,11 @@ function openModal() {
           leave-from="opacity-100"
           leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black/25" />
+        <div class="fixed inset-0 bg-black/50"/>
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
-        <div
-            class="flex min-h-full items-center justify-center p-4 text-center"
-        >
+        <div class="flex min-h-full items-center justify-center p-4 text-center">
           <TransitionChild
               as="template"
               enter="duration-300 ease-out"
@@ -69,56 +64,68 @@ function openModal() {
               leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-                class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
-            >
-              <DialogTitle
-                  as="h3"
-                  class="text-lg font-medium leading-6 text-gray-900"
-              >
+                class="w-full max-w-lg transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all">
+              <DialogTitle class="text-lg font-semibold text-gray-900 p-4 border-b border-gray-200">
                 Payment successful
               </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  <Stepper value="1">
-                    <StepList>
-                      <Step value="1">Header I</Step>
-                      <Step value="2">Header II</Step>
-                      <Step value="3">Header III</Step>
-                    </StepList>
-                    <StepPanels>
-                      <StepPanel v-slot="{ activateCallback }" value="1">
-                        <div class="flex flex-col h-48">
-                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content I</div>
-                        </div>
-                        <div class="flex pt-6 justify-end">
-                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')" />
-                        </div>
-                      </StepPanel>
-                      <StepPanel v-slot="{ activateCallback }" value="2">
-                        <div class="flex flex-col h-48">
-                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content II</div>
-                        </div>
-                        <div class="flex pt-6 justify-between">
-                          <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('1')" />
-                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('3')" />
-                        </div>
-                      </StepPanel>
-                      <StepPanel v-slot="{ activateCallback }" value="3">
-                        <div class="flex flex-col h-48">
-                          <div class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium">Content III</div>
-                        </div>
-                        <div class="pt-6">
-                          <Button label="Back" severity="secondary" icon="pi pi-arrow-left" @click="activateCallback('2')" />
-                        </div>
-                      </StepPanel>
-                    </StepPanels>
-                  </Stepper>
-                </p>
-              </div>
 
+              <div class="p-6">
+                <Stepper value="1">
+                  <StepList>
+                    <Step value="1">Header I</Step>
+                    <Step value="2">Header II</Step>
+                  </StepList>
+
+                  <StepPanels>
+                    <StepPanel v-slot="{ activateCallback }" value="1">
+                      <div
+                          class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
+                        <FileUpload name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000">
+                          <template #empty>
+                            <span>Drag and drop files here to upload.</span>
+                          </template>
+                        </FileUpload>
+                      </div>
+                      <div class="flex pt-6 justify-end">
+                        <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')"/>
+                      </div>
+                    </StepPanel>
+
+                    <StepPanel v-slot="{ activateCallback }" value="2">
+                      <div
+                          class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
+                        <p>
+
+                          <input type="text"
+                                 class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                                 placeholder="title">
+
+                          <textarea name="" id=""
+                                    class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                                    placeholder="Write anything here"></textarea>
+
+                          <input
+                              type="text"
+                              placeholder="Add location"
+                              class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                          />
+                        </p>
+                      </div>
+                      <div class="flex pt-6 justify-between">
+                        <button
+                            class="w-full p-3 border rounded-md focus:outline-none focus:ring-1 shadow-sm text-gray-900 bg-blue-300 hover:bg-gray-500"
+                        >Submit
+                        </button>
+                      </div>
+                    </StepPanel>
+
+                  </StepPanels>
+                </Stepper>
+              </div>
             </DialogPanel>
           </TransitionChild>
         </div>
       </div>
     </Dialog>
-  </TransitionRoot></template>
+  </TransitionRoot>
+</template>
