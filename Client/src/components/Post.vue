@@ -11,6 +11,7 @@ import FileUpload from 'primevue/fileupload';
 import {reactive, ref} from 'vue';
 import {TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle} from '@headlessui/vue';
 import {useToast} from 'primevue/usetoast';
+import usePost from "@/composables/usePost.js";
 
 const isOpen = ref(true);
 
@@ -18,25 +19,32 @@ function closeModal() {
   isOpen.value = false;
 }
 
+
+const showPost = ref(false);
+
+const togglePost = () => {
+  showPost.value = !showPost.value;
+};
+
+const onFileSelect = (event) => {
+  const file = event.files[0]; // Access file directly from event in PrimeVue
+  console.log("File selected:", file);
+};
+
+const handleFileChange = (event) => {
+  state.formInput.image = event.target.files[0];  // Set the image file
+};
+
 function openModal() {
   isOpen.value = true;
 }
 
-const state = reactive({
-  formInput: {
-    image: '',
-    title: '',
-    slug: '',
-    post: '',
-    location: ''
 
-  }
+const {add_post, state} = usePost()
 
-})
+const post = async () =>{
 
-const post = () =>{
-
-  console.log('post')
+ await add_post()
 }
 </script>
 
@@ -86,53 +94,44 @@ const post = () =>{
                 <Stepper value="1">
                   <StepList>
                     <Step>Upload Picture</Step>
-                    <Step>About Picture</Step>
                   </StepList>
-                  <form @submit.prevent="post">
+                  <form @submit.prevent="post" enctype="multipart/form-data">
 
                     <StepPanels>
                       <StepPanel v-slot="{ activateCallback }" value="1">
                         <div
                             class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
-                          <FileUpload v-model="state.formInput.image" name="demo[]" :multiple="true" accept="image/*" :maxFileSize="1000000">
+                          <FileUpload v-model="state.formInput.image" name="image" :auto="false" accept="image/*" :maxFileSize="1000000" @select="onFileSelect">
                             <template #empty>
                               <span>Drag and drop files here to upload.</span>
                             </template>
                           </FileUpload>
+
+<!--                        <input type="file" @change="handleFileChange" class="block w-full rounded-md" />-->
                         </div>
+
+
+                        <input type="text" v-model="state.formInput.title"
+                               class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                               placeholder="title">
+
+                        <textarea name="" id="" v-model="state.formInput.post"
+                                  class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                                  placeholder="Write anything here"></textarea>
+
+                        <input
+                            v-model="state.formInput.location"
+                            type="text"
+                            placeholder="Add location"
+                            class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
+                        />
+
                         <div class="flex pt-6 justify-end">
-                          <Button label="Next" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback('2')"/>
-                        </div>
-                      </StepPanel>
-
-                      <StepPanel v-slot="{ activateCallback }" value="2">
-                        <div
-                            class="flex flex-col h-48 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 justify-center items-center">
-                          <p>
-
-                            <input type="text"
-                                   class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                                   placeholder="title">
-
-                            <textarea name="" id="" v-model="state.formInput.post"
-                                      class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                                      placeholder="Write anything here"></textarea>
-
-                            <input
-                                v-model="state.formInput.location"
-                                type="text"
-                                placeholder="Add location"
-                                class="w-full p-3 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 shadow-sm text-gray-900"
-                            />
-                          </p>
-                        </div>
-                        <div class="flex pt-6 justify-between">
                           <button
                               class="w-full p-3 border rounded-md focus:outline-none focus:ring-1 shadow-sm text-gray-900 bg-blue-300 hover:bg-gray-100"
                           >Submit
                           </button>
                         </div>
-
                       </StepPanel>
                     </StepPanels>
                   </form>
