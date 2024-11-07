@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Cors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,9 @@ Route::post('/post', [\App\Http\Controllers\PostController::class, 'store']);
 
 
 Route::middleware('auth:sanctum')->group( function () {
-   Route::get('/users', [UserController::class, 'user']);
+
+    Route::get('/users', [UserController::class, 'user']);
     Route::post('/logout', [UserController::class, 'logout']);
+
 
 });

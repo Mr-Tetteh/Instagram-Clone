@@ -22,6 +22,13 @@ export default function usePost() {
             formData.append(key, state.formInput[key]);
         });
 
+        // const token = localStorage.getItem('AUTH_TOKEN')
+        // const config = {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // };
+
         try {
             await axios.post('http://127.0.0.1:8001/api/post', formData, {
                 headers: {
