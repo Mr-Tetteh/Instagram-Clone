@@ -5,51 +5,52 @@ import NavBar from "@/components/NavBar.vue";
 
 <template>
   <NavBar/>
-  <section class="md:ml-64 p-4 md:p-10 h-screen bg-black">
-    <div
-        class="mx-auto sm:py-20 lg:py-2 lg:ml-96 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 text-white overflow-hidden">
-      <img src="/login.jpg" alt="profile" class="rounded-full w-24 h-24 sm:w-32 sm:h-32">
+  <section class="md:ml-24 p-4 md:p-10 h-screen bg-black text-white">
+    <div class="flex flex-col sm:flex-row items-center lg:ml-96 mx-auto sm:py-20 lg:py-4 space-y-6 sm:space-y-0 sm:space-x-8">
+
+      <!-- Profile Image -->
+      <img src="/login.jpg" alt="profile" class="rounded-full w-28 h-28 sm:w-36 sm:h-36 border-2 border-gray-600">
 
       <!-- Profile Info and Buttons -->
-      <div class="flex flex-col items-center sm:items-start">
-        <div class="flex flex-col sm:flex-row items-center sm:items-baseline space-y-2 sm:space-y-0 sm:space-x-4">
+      <div class="flex flex-col items-center sm:items-start text-center sm:text-left">
+        <!-- Username and Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center sm:items-baseline space-y-3 sm:space-y-0 sm:space-x-4">
           <div class="text-2xl font-semibold">mr.tetteh80</div>
-          <div class="flex space-x-2">
+          <div class="flex space-x-3">
             <button class="bg-gray-700 text-white px-3 py-1 rounded-md text-sm">Edit Profile</button>
             <button class="bg-gray-700 text-white px-3 py-1 rounded-md text-sm">View Archive</button>
-            <button class="bg-gray-700 text-white px-3 py-1 rounded-md text-sm">Rounded</button>
+            <button class="bg-gray-700 text-white px-3 py-1 rounded-md text-sm">Options</button>
           </div>
         </div>
 
-        <div class="flex space-x-6 text-lg sm:mt-2">
-          <div><span class="font-semibold text-white">3</span> posts</div>
-          <div><span class="font-semibold text-white">1,244</span> followers</div>
-          <div><span class="font-semibold text-white">1,145</span> following</div>
+        <!-- Stats -->
+        <div class="flex space-x-8 text-lg sm:mt-3">
+          <div><span class="font-semibold">3</span> posts</div>
+          <div><span class="font-semibold">1,244</span> followers</div>
+          <div><span class="font-semibold">1,145</span> following</div>
         </div>
 
-        <div class="flex space-x-6 text-lg sm:mt-2 font-serif">
-          <div><span class="font-semibold text-white">Daniel Tetteh</span></div>
+        <!-- Name and Bio -->
+        <div class="mt-3 text-lg font-serif">
+          <div class="font-semibold">Daniel Tetteh</div>
         </div>
-
-
-        <div class="flex space-x-6 text-sm sm:mt-2 font-serif">
-          <div><span class="font-semibold text-white">I’m Daniel. I’m interested in Python, PHP, Swift and iOS development, FX and Data Science.
-        </span></div>
+        <div class="mt-2 text-sm font-serif max-w-xs">
+          I’m Daniel. I’m interested in Python, PHP, Swift, iOS development, FX, and Data Science.
         </div>
       </div>
     </div>
 
-    <div class="mx-auto lg:ml-96  mt-64  text-white overflow-hidden">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
-          <img src="/login.jpg" alt="profile" class="w-full h-auto rounded-md sm:w-48 sm:h-48">
+    <!-- Gallery Section -->
+    <div class="mx-auto lg:ml-96 mt-16 text-white">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
+        <img src="/login.jpg" alt="gallery-image" class="w-full h-auto rounded-md">
       </div>
-
     </div>
   </section>
 
