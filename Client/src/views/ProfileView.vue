@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar.vue";
 
 <template>
   <NavBar/>
-  <section class="md:ml-24 p-4 md:p-10 h-screen bg-black text-white">
+  <section class="md:ml-24 lg:ml-44 p-4 md:p-10 h-screen bg-black text-white overflow-hidden">
     <div class="flex flex-col sm:flex-row items-center lg:ml-96 mx-auto sm:py-20 lg:py-4 space-y-6 sm:space-y-0 sm:space-x-8">
 
       <!-- Profile Image -->
