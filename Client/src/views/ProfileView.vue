@@ -18,7 +18,7 @@ onMounted( () => get_user(props.id))
 
 <template>
   <NavBar/>
-  <section class="md:ml-24 lg:ml-44 p-4 md:p-10 h-screen bg-black text-white overflow-hidden">
+  <section class="md:ml-24 lg:ml-44 p-4 md:p-10 h-screen bg-black text-white ">
     <div  class="flex flex-col sm:flex-row items-center lg:ml-96 mx-auto sm:py-20 lg:py-4 space-y-6 sm:space-y-0 sm:space-x-8">
 
       <!-- Profile Image -->
@@ -47,8 +47,8 @@ onMounted( () => get_user(props.id))
         <div class="mt-3 text-lg font-serif">
           <div class="font-semibold">{{user.full_name}}</div>
         </div>
-        <div class="mt-2 text-sm font-serif max-w-xs">
-          I’m Daniel. I’m interested in Python, PHP, Swift, iOS development, FX, and Data Science.
+        <div class="mt-2 text-sm font-serif">
+          {{user.bio}}
         </div>
       </div>
     </div>
