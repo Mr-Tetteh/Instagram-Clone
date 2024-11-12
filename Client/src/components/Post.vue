@@ -27,12 +27,11 @@ const togglePost = () => {
 };
 
 const onFileSelect = (event) => {
-  const file = event.files[0]; // Access file directly from event in PrimeVue
-  console.log("File selected:", file);
+  const file = event.files[0];
 };
 
 const handleFileChange = (event) => {
-  state.formInput.image = event.target.files[0];  // Set the image file
+  state.formInput.image = event.target.files[0];
 };
 
 function openModal() {
