@@ -21,7 +21,7 @@ import NavBar from "@/components/NavBar.vue";
           </svg>
           <span> 2d</span>
         </div>
-        <img src="/login.jpg" alt="post" width="700" height="700" class="border-2 border-gray-600 rounded-2xl">
+        <img src="/login.jpg" alt="post" width="600" height="600" class="border-2 border-gray-600 rounded-2xl">
         <div class=" flex flex-row space-x-4">
           <p class="mt-6">
             <svg xmlns="http://www.w3.org/2000/svg" class="bg-white" viewBox="0 0 512 512" width="30">

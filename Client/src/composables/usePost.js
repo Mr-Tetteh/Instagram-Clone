@@ -22,19 +22,16 @@ export default function usePost() {
             formData.append(key, state.formInput[key]);
         });
 
-        // const token = localStorage.getItem('AUTH_TOKEN')
-        // const config = {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // };
+        const token = localStorage.getItem('AUTH_TOKEN')
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            }
+        };
 
         try {
-            await axios.post('http://127.0.0.1:8001/api/post', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            await axios.post('http://127.0.0.1:8001/api/post', formData, config);
             await router.push('/');
         } catch (err) {
             alert(err);

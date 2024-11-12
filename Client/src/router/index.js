@@ -30,9 +30,10 @@ const router = createRouter({
       component: CreatePostView
     },
     {
-      path: '/my/profile',
-      name: 'profile',
-      component: ProfileView
+      path: '/my/profile/:id',
+      name: 'user.profile',
+      component: ProfileView,
+      props: true
     },
   ]
 })

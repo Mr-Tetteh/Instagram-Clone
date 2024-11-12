@@ -2,9 +2,11 @@
 import Post from "@/components/Post.vue";
 import {ref} from "vue";
 import {RouterLink} from "vue-router";
+import useSession from "@/composables/useSession.js";
 
 
 const showPost = ref(false)
+const {id} = useSession()
 
 const togglePost = () => {
   showPost.value = !showPost.value;
@@ -97,7 +99,7 @@ const togglePost = () => {
 
 
         <li>
-          <RouterLink to="/my/profile"
+          <RouterLink :to="{name: 'user.profile', params: {id:id}}"
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <span  class="flex-shrink-0"></span>
             <span class="ml-3">Profile</span>

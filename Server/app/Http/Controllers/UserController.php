@@ -43,11 +43,11 @@ class UserController extends Controller
         } elseif (User::where('phone', $request->phone)->first()) {
             return response()->json([
                 'message' => 'Sorry, Phone number already exists'
-            ],402);
+            ], 402);
         } elseif (User::where('username', $request->username)->first()) {
             return response()->json([
                 'message' => 'Sorry, Username already exists'
-            ],402);
+            ], 402);
         }
 
         $user = User::create([
@@ -63,37 +63,49 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        try{
-            $user = User::where('email', $request->identifier)
-                ->orWhere('phone', $request->identifier)
-                ->orWhere('username', $request->identifier)
-                ->first();
+        try {
+          $user = User::where('email', $request->identifier)
+              ->orWhere('phone', $request->identifier)
+              ->orWhere('username', $request->identifier)
+              ->first();
 
-           if (!$user || !Hash::check($request->input('password'), $user->password)) {
-               return response()->json([
-                   'message' => 'Sorry Wrong Email or Password'
-               ],401);
-           }
-           return response()->json([
-               'Message' => 'Login Successful',
-               'user' => $user,
-               'authorisation' =>[
-                   'type' => 'Bearer',
-                   'token' => $user->createToken($user->email ?? $user->phone)->plainTextToken
-               ]
-           ]);
-        }catch (\Throwable $th){
+//            $user = \App\Models\User::where('email', $request->email)->first();
+//
+//            if (!$user || !Hash::check($request['password'], $user->password)) {
+////                return ApiResponse::unauthorizedError('Invalid credentials');
+//                return response()->json([
+//                    'message' => 'Sorry, Invalid Credentials.'
+//                ], 401);
+//            }
+
+
+            logger('message',
+                ['user' => $user]
+            );
+            if (!$user || !Hash::check($request->input('password'), $user->password)) {
+                return response()->json([
+                    'message' => 'Sorry Wrong Email or Password'
+                ], 401);
+            }
+            return response()->json([
+                'Message' => 'Login Successful',
+                'user' => $user,
+                'authorisation' => [
+                    'type' => 'Bearer',
+                    'token' => $user->createToken($user->email ?? $user->phone)->plainTextToken
+                ]
+            ]);
+        } catch (\Throwable $th) {
             return response()->json([
                 'error' => 'Something went wrong'
             ], 500);
         }
-
     }
 
 
     public function user()
     {
-       return Auth::user();
+        return Auth::user();
 
     }
 
@@ -108,9 +120,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return new UserResource($user);
+
     }
 
     /**

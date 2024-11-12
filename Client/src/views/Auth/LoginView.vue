@@ -19,6 +19,7 @@ const login = async () =>{
     localStorage.setItem("USERNAME", response.data.user.username)
     localStorage.setItem("PHONE", response.data.user.phone)
     localStorage.setItem("FULL_NAME", response.data.user.full_name)
+    localStorage.setItem("USER_ID", response.data.user.id)
     Route.push('/')
   }catch (err){
     alert(err.response.data.message)

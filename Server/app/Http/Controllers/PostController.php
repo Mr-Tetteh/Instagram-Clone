@@ -31,6 +31,8 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        logger($request->all());
+        dd();
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
         } else {
