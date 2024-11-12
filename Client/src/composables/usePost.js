@@ -15,28 +15,28 @@ export default function usePost() {
         }
 
     })
-
     const add_post = async () => {
         const formData = new FormData();
         Object.keys(state.formInput).forEach((key) => {
             formData.append(key, state.formInput[key]);
         });
+        const token = localStorage.getItem('AUTH_TOKEN');
 
-        const token = localStorage.getItem('AUTH_TOKEN')
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
-            }
+            },
         };
-
         try {
             await axios.post('http://127.0.0.1:8001/api/post', formData, config);
-            await router.push('/');
+            router.push('/');
         } catch (err) {
-            alert(err);
+            console.error("Failed to add post:", err);
+            alert("Failed to add post");
         }
     };
+
 
 
     return {
