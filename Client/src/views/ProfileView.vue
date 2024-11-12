@@ -45,7 +45,7 @@ onMounted( () => get_user(props.id))
 
         <!-- Name and Bio -->
         <div class="mt-3 text-lg font-serif">
-          <div class="font-semibold">Daniel Tetteh</div>
+          <div class="font-semibold">{{user.full_name}}</div>
         </div>
         <div class="mt-2 text-sm font-serif max-w-xs">
           I’m Daniel. I’m interested in Python, PHP, Swift, iOS development, FX, and Data Science.
