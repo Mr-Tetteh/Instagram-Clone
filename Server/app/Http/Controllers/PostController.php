@@ -31,15 +31,12 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        logger($request->all());
-        dd();
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('images', 'public');
         } else {
             $path = null;
         }
         $post = Post::create([
-            'user_id' => Auth::id(),
             'title' => $request->input('title'),
             'image' => $path,
             'post' => $request->input('post'),
