@@ -69,14 +69,6 @@ class UserController extends Controller
               ->orWhere('username', $request->identifier)
               ->first();
 
-//            $user = \App\Models\User::where('email', $request->email)->first();
-//
-//            if (!$user || !Hash::check($request['password'], $user->password)) {
-////                return ApiResponse::unauthorizedError('Invalid credentials');
-//                return response()->json([
-//                    'message' => 'Sorry, Invalid Credentials.'
-//                ], 401);
-//            }
 
 
             logger('message',
@@ -88,11 +80,11 @@ class UserController extends Controller
                 ], 401);
             }
             return response()->json([
-                'Message' => 'Login Successful',
-                'user' => $user,
-                'authorisation' => [
-                    'type' => 'Bearer',
-                    'token' => $user->createToken($user->email ?? $user->phone)->plainTextToken
+                "message" => "Login Successful",
+                "user" => $user,
+                "authorisation" => [
+                    "type" => "Bearer",
+                    "token" => $user->createToken($user->email ?? $user->phone ?? $user->username)->plainTextToken
                 ]
             ]);
         } catch (\Throwable $th) {

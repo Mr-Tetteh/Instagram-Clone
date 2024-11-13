@@ -1,30 +1,30 @@
 <script setup>
-import {reactive} from "vue";
+import { reactive } from "vue";
 import axios from "axios";
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 const state = reactive({
-  formInput:{
+  formInput: {
     identifier: '',
     password: ''
   }
-})
+});
 
-const Route = useRouter()
-const login = async () =>{
-  try{
-    const response = await axios.post('http://127.0.0.1:8001/api/login', state.formInput)
+const router = useRouter();
+const login = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8001/api/login', state.formInput);
     const token = response.data.authorisation.token
-    localStorage.setItem("AUTH_TOKEN", token)
-    localStorage.setItem("USERNAME", response.data.user.username)
-    localStorage.setItem("PHONE", response.data.user.phone)
-    localStorage.setItem("FULL_NAME", response.data.user.full_name)
-    localStorage.setItem("USER_ID", response.data.user.id)
-    Route.push('/')
-  }catch (err){
-    alert(err.response.data.message)
+    localStorage.setItem("AUTH_TOKEN", token);
+    localStorage.setItem("USERNAME", response.data.user.username);
+    localStorage.setItem("PHONE", response.data.user.phone);
+    localStorage.setItem("FULL_NAME", response.data.user.full_name);
+    localStorage.setItem("USER_ID", response.data.user.id);
+    router.push('/');
+  } catch (err) {
+    alert(err.response?.data?.message || "An error occurred.");
   }
-}
+};
 </script>
 
 <template>

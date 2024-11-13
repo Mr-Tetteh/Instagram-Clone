@@ -5,9 +5,11 @@ import {RouterLink} from "vue-router";
 import useSession from "@/composables/useSession.js";
 import {Button, InputText, InputGroup, InputGroupAddon} from 'primevue';
 import Popover from 'primevue/popover';
+import useAuth from "@/composables/useAuth.js";
 
 const showPost = ref(false)
 const {id} = useSession()
+const {logout} = useAuth()
 
 const togglePost = () => {
   showPost.value = !showPost.value;
@@ -15,18 +17,13 @@ const togglePost = () => {
 
 
 const op = ref();
-const members = ref([
-  {name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner'},
-  {name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor'},
-  {name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer'}
-]);
 
 const toggle = (event) => {
   op.value.toggle(event);
 }
 
-const logout = () => {
-
+const user_logout = () => {
+  logout()
 }
 
 </script>
@@ -159,7 +156,7 @@ const logout = () => {
                   class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                 <div>
                   <span class="p-2 rounded mt-6">
-                      <button @click="logout"> LogOut </button>
+                      <button @click="user_logout"> LogOut </button>
                   </span>
                 </div>
               </div>
