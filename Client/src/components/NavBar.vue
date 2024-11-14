@@ -133,7 +133,7 @@ const visible = ref(false);
                 <label for="username" class="font-semibold w-24">
                   <Post/>
                 </label>
-                <div class="flex justify-end gap-2 text-white rounded-2 p-2">
+                <div class="flex justify-end gap-2 text-amber-300 rounded-2 p-2">
                   <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
                 </div>
               </div>

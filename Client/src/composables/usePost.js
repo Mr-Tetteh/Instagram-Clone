@@ -24,7 +24,7 @@ export default function usePost() {
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         }
-p
+
         const formData = new FormData();
         formData.append('title', state.formInput.title);
         formData.append('post', state.formInput.post);
