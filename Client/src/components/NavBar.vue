@@ -123,33 +123,19 @@ const visible = ref(false);
           </a>
         </li>
 
-        <li>
-          <a @click="togglePost"
-             class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20">
-              <path
-                  d="M576 64c0-35.3-28.7-64-64-64H64C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V64zM288 288H192v96c0 8.5-6.5 16-16 16s-16-7.5-16-16v-96h-96c-8.5 0-16-6.5-16-16s7.5-16 16-16h96v-96c0-8.5 6.5-16 16-16s16 7.5 16 16v96h96c8.5 0 16 6.5 16 16s-7.5 16-16 16z"
-                  fill="#D3D3D3"/>
-            </svg>
-            <span class="ml-3">Create</span>
-
-          </a>
-
-        </li>
 
         <li>
-          <div class="flex items-center p-3 text-base font-normal text-gray-900  rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-
-            <Button label="Show" @click="visible = true"/>
-            <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }">
-              <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
+          <div
+              class="flex items-center p-3 text-base font-normal text-gray-900  rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+            <Button label="Create" @click="visible = true"/>
+            <Dialog v-model:visible="visible" modal header="" :style="{ width: '25rem' }">
               <div class=" ">
-                <label for="username" class="font-semibold w-24"><Post/></label>
-                <InputText id="username" class="flex-auto" autocomplete="off"/>
-              </div>
-              <div class="flex justify-end gap-2">
-                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
-                <Button type="button" label="Save" @click="visible = false"></Button>
+                <label for="username" class="font-semibold w-24">
+                  <Post/>
+                </label>
+                <div class="flex justify-end gap-2 text-white rounded-2 p-2">
+                  <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+                </div>
               </div>
             </Dialog>
           </div>
@@ -181,7 +167,7 @@ const visible = ref(false);
               <div
                   class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                 <div>
-                  <span class="p-2 rounded mt-6">
+                  <span class="p-2 rounded mt-10">
                       <button @click="user_logout"> LogOut </button>
                   </span>
                 </div>
