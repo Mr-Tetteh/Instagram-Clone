@@ -7,40 +7,42 @@ export default function usePost() {
 
     const state = reactive({
         formInput: {
-            image: '',
             title: '',
             post: '',
-            location: ''
-
+            location: '',
+            image: null // or any default you want
         }
+    });
 
-    })
-    const add_post = async () => {
-        const formData = new FormData();
-        Object.keys(state.formInput).forEach((key) => {
-            formData.append(key, state.formInput[key]);
-        });
-        const token = localStorage.getItem('AUTH_TOKEN');
-
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        };
-        try {
-            await axios.post('http://127.0.0.1:8001/api/post', formData, config);
-            router.push('/');
-        } catch (err) {
-            console.error("Failed to add post:", err);
-            alert("Failed to add post");
-        }
+    const handleFileUpload = (event) => {
+        state.formInput.image = event.target.files[0];
     };
 
+    const add_post = async () => {
+
+        const token = localStorage.getItem('AUTH_TOKEN')
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        }
+        const formData = new FormData();
+        formData.append('title', state.formInput.title);
+        formData.append('post', state.formInput.post);
+        formData.append('location', state.formInput.location);
+        formData.append('image', state.formInput.image);
+
+        try {
+            const response = await axios.post('http://127.0.0.1:8001/api/post', config, {
+                body: formData
+            });
+        } catch (error) {
+            console.error('Failed to add post:', error);
+        }
+    };
 
 
     return {
         add_post,
         state,
+        handleFileUpload
     }
 }

@@ -11,7 +11,7 @@ export default function useAuth() {
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         }
-        let response = await axios.get(`http://127.0.0.1:8001/api/users/${id}`, config);
+        let response = await axios.get(`http://127.0.0.1:8001/api/users/${id}`,  config);
         user.value = response.data;
     }
 

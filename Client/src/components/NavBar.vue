@@ -7,6 +7,9 @@ import {Button, InputText, InputGroup, InputGroupAddon} from 'primevue';
 import Popover from 'primevue/popover';
 import useAuth from "@/composables/useAuth.js";
 
+import Dialog from 'primevue/dialog';
+
+
 const showPost = ref(false)
 const {id} = useSession()
 const {logout} = useAuth()
@@ -25,6 +28,10 @@ const toggle = (event) => {
 const user_logout = () => {
   logout()
 }
+
+
+const visible = ref(false);
+
 
 </script>
 
@@ -127,6 +134,25 @@ const user_logout = () => {
             <span class="ml-3">Create</span>
 
           </a>
+
+        </li>
+
+        <li>
+          <div class="flex items-center p-3 text-base font-normal text-gray-900  rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+
+            <Button label="Show" @click="visible = true"/>
+            <Dialog v-model:visible="visible" modal header="Edit Profile" :style="{ width: '25rem' }">
+              <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
+              <div class=" ">
+                <label for="username" class="font-semibold w-24"><Post/></label>
+                <InputText id="username" class="flex-auto" autocomplete="off"/>
+              </div>
+              <div class="flex justify-end gap-2">
+                <Button type="button" label="Cancel" severity="secondary" @click="visible = false"></Button>
+                <Button type="button" label="Save" @click="visible = false"></Button>
+              </div>
+            </Dialog>
+          </div>
 
         </li>
 
