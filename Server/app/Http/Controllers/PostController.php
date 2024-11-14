@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class PostController extends Controller
 {
@@ -32,11 +31,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-        } else {
-            $path = null;
+        if ($request->has('image')){
+         $path =    $request->file('image')->store( 'images','public');
+        }else{
+           $path = null;
         }
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'title' => $request->input('title'),
