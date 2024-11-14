@@ -21,6 +21,7 @@ Route::post('/login', [UserController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->group( function () {
+    Route::get('/all_posts', [PostController::class, 'index'])->middleware(Cors::class);
     Route::post('/post', [PostController::class, 'store'])->middleware(Cors::class);
     Route::get('/users/{id}', [UserController::class, 'user']);
     Route::post('/logout', [UserController::class, 'logout']);

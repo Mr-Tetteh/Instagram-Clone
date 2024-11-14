@@ -1,5 +1,5 @@
 import axios from "axios";
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
 import router from "@/router/index.js";
 
 export default function usePost() {
@@ -13,6 +13,8 @@ export default function usePost() {
             image: null // or any default you want
         }
     });
+
+    const posts = ref()
 
     const handleFileUpload = (event) => {
         state.formInput.image = event.target.files[0];
@@ -40,9 +42,21 @@ export default function usePost() {
     };
 
 
+    const get_all_post = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        }
+            let response = await axios.get(`http://127.0.0.1:8001/api/all_posts`, config)
+            posts.value =  response.data.data
+
+    }
+
     return {
         add_post,
         state,
-        handleFileUpload
+        handleFileUpload,
+        get_all_post,
+        posts
     }
 }

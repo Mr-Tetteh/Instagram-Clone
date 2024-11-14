@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,8 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'image' => url('storage/' .$this->image),
             'post' => $this->post,
-            'location' => $this->location
+            'location' => $this->location,
+            'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
         ];
     }
 }
