@@ -16,6 +16,7 @@
     "pinia": "^2.2.4",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.1",
+    "tailwindcss-motion": "^0.4.1-beta",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },

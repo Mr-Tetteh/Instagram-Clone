@@ -27,7 +27,7 @@ const register = async () =>{
 </script>
 
 <template>
-  <div class="p-4 lg:p-2">
+  <div class="p-4 lg:p-2 motion-preset-focus motion-duration-2000">
     <div
         class="mt-20 sm:mx-auto sm:w-full sm:max-w-sm border border-gray-300 rounded-lg  p-10 pt-10  pb-20 shadow-lg bg-white"><div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -40,7 +40,7 @@ const register = async () =>{
 
 
 
-      <form class="border-solid " @submit.prevent="register">
+      <form class="border-solid motion-preset-focus motion-duration-2000 " @submit.prevent="register">
 
         <div class="mt-3">
           <input v-model="state.formInput.email" id="email" type="email" autocomplete="email" required placeholder=" email address"

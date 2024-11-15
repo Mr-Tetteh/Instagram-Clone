@@ -36,7 +36,7 @@ const visible = ref(false);
 </script>
 
 <template>
-  <aside id="default-sidebar"
+  <aside id="default-sidebar "
          class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
          aria-label="Sidenav">
     <div class="bg-black dark:border-gray-700 ">
@@ -44,7 +44,7 @@ const visible = ref(false);
     </div>
     <div class="py-5 px-3 h-full border-r  dark:border-gray-700 ">
       <ul class="space-y-2  ">
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <RouterLink to="/"
                       class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="#D3D3D3" width="20">
@@ -56,7 +56,7 @@ const visible = ref(false);
           </RouterLink>
         </li>
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <a
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#D3D3D3" width="20">
@@ -67,7 +67,7 @@ const visible = ref(false);
           </a>
         </li>
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <a
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#D3D3D3" width="20">
@@ -79,7 +79,7 @@ const visible = ref(false);
           </a>
         </li>
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <a
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="#D3D3D3" width="20" height="24">
@@ -98,7 +98,7 @@ const visible = ref(false);
         </li>
 
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <a
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#D3D3D3" width="20">
@@ -111,7 +111,7 @@ const visible = ref(false);
         </li>
 
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <a
               class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#D3D3D3" width="20">
@@ -124,7 +124,7 @@ const visible = ref(false);
         </li>
 
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <div
               class="flex items-center p-3 text-base font-normal text-gray-900  rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <Button label="Create" @click="visible = true"/>
@@ -143,7 +143,7 @@ const visible = ref(false);
         </li>
 
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
           <RouterLink :to="{name: 'user.profile', params: {id:id}}"
                       class="flex items-center p-3 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
             <span class="flex-shrink-0"><img src="/avatr.png" class="rounded-full size-9" alt=""> </span>
@@ -151,7 +151,7 @@ const visible = ref(false);
           </RouterLink>
         </li>
 
-        <li>
+        <li class="motion-preset-pop motion-duration-2000">
 
           <!--          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#D3D3D3" width="20">-->
           <!--            <path-->

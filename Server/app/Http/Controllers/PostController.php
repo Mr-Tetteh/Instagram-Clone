@@ -10,12 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return PostResource::collection(Post::all());
+        return PostResource::collection(Post::latest()->get());
+    }
+
+    public function user_posts()
+    {
+        return PostResource::collection(Post::where('user_id', Auth::id())->get());
+
     }
 
     /**

@@ -52,11 +52,22 @@ export default function usePost() {
 
     }
 
+    const get_all_user_post = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN')
+        const config = {
+            headers: {Authorization: `Bearer ${token}`}
+        }
+        let response = await axios.get(`http://127.0.0.1:8001/api/user_posts`, config)
+        posts.value =  response.data.data
+
+    }
+
     return {
         add_post,
         state,
         handleFileUpload,
         get_all_post,
-        posts
+        posts,
+        get_all_user_post
     }
 }

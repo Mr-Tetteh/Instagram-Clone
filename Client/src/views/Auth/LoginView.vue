@@ -28,7 +28,7 @@ const login = async () => {
 </script>
 
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen items-center gap-0 px-4 lg:px-2 lg:gap-4 shadow-2xl">
+  <div class="grid grid-cols-1 lg:grid-cols-2 min-h-screen items-center gap-0 px-4 lg:px-2 lg:gap-4 shadow-2xl motion-preset-expand ">
 
     <!-- Image Container -->
     <div class="flex justify-center lg:p-0">

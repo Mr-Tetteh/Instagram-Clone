@@ -13,13 +13,13 @@ onMounted(() => get_all_post())
 <template>
 
   <NavBar/>
-  <section class="md:ml-24 lg:ml-44 p-4 md:p-10 h-screen text-white">
+  <section class="md:ml-24 lg:ml-44 p-4 md:p-10 h-screen text-white motion-preset-slide-right ">
     <div class="flex flex-col items-center space-y-6">
       <div v-for="post in posts" class="w-full max-w-md lg:max-w-lg xl:max-w-2xl  rounded-lg p-6 space-y-6">
 
         <div class="flex items-center space-x-3">
           <img src="/login.jpg" alt="profile pic" class="rounded-full w-16 h-16 border-2 border-gray-600">
-          <h3 class="text-lg font-semibold">{{ post.username }} </h3>
+          <h3 class="text-lg font-semibold  ">{{ post.username }} </h3>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-blue-400">
             <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49...Z" clip-rule="evenodd"/>
           </svg>
