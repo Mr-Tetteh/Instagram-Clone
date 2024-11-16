@@ -4,6 +4,7 @@ import LoginView from "@/views/Auth/LoginView.vue";
 import RegisterView from "@/views/Auth/RegisterView.vue";
 import CreatePostView from "@/views/CreatePostView.vue";
 import ProfileView from "@/views/ProfileView.vue";
+import PublicProfileView from "@/views/PublicProfileView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,12 @@ const router = createRouter({
       path: '/my/profile/:id',
       name: 'user.profile',
       component: ProfileView,
+      props: true
+    },
+    {
+      path: '/public/profile/:id',
+      name: 'pub.profile',
+      component: PublicProfileView,
       props: true
     },
   ]

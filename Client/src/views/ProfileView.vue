@@ -52,7 +52,7 @@ onMounted(() => {
         <div class="mt-3 text-lg font-serif">
           <div class="font-semibold">{{ user.full_name }}</div>
         </div>
-        <div class="mt-2 text-sm font-serif">
+        <div class="mt-2 text-sm font-serif motion-preset-pop motion-duration-1500">
           {{ user.bio }}
         </div>
       </div>
@@ -62,7 +62,7 @@ onMounted(() => {
     <section class="mx-auto lg:ml-96 mt-16 text-white">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div v-for="post in posts" :key="post.id">
-          <img :src="post.image" alt="gallery-image" class="w-96 h-96 object-cover rounded-md">
+          <img :src="post.image" alt="gallery-image" class="w-96 h-96 object-cover rounded-md motion-preset-expand motion-duration-2000">
         </div>
       </div>
     </section>

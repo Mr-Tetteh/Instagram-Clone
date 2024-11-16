@@ -19,7 +19,7 @@ onMounted(() => get_all_post())
 
         <div class="flex items-center space-x-3">
           <img src="/login.jpg" alt="profile pic" class="rounded-full w-16 h-16 border-2 border-gray-600">
-          <h3 class="text-lg font-semibold  ">{{ post.username }} </h3>
+          <h3 class="text-lg font-semibold  "> <RouterLink :to="{ name: 'pub.profile', params: {id: post.user_id}}"  > {{ post.username }}</RouterLink> </h3>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-blue-400">
             <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49...Z" clip-rule="evenodd"/>
           </svg>
