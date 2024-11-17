@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,6 +25,12 @@ class PostController extends Controller
     {
         return PostResource::collection(Post::where('user_id', Auth::id())->get());
 
+    }
+
+    public function pub_profile(Request $request)
+    {
+        $user = $request->id;
+        return PostResource::collection(Post::where('user_id', $user)->get());
     }
 
     /**
