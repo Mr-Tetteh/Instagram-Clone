@@ -17,7 +17,7 @@ const state = reactive({
 const Router = router
 const register = async () =>{
   try {
-    const response =  await axios.post(`http://127.0.0.1:8001/api/register`, state.formInput)
+    const response =  await axios.post(`https://insta.local.stay/api/register`, state.formInput)
     await Router.push('login')
   }catch (err){
     alert(err.response.data.message)
