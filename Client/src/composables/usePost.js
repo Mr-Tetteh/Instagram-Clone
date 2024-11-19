@@ -34,7 +34,7 @@ export default function usePost() {
         formData.append('image', state.formInput.image);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8001/api/post',formData, config )
+            const response = await axios.post('https://insta.local.stay/api/post',formData, config )
             await router.push('/')
         } catch (error) {
             console.error('Failed to add post:', error);
@@ -47,7 +47,7 @@ export default function usePost() {
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         }
-            let response = await axios.get(`http://127.0.0.1:8001/api/all_posts`, config)
+            let response = await axios.get(`https://insta.local.stay/api/all_posts`, config)
             posts.value =  response.data.data
 
     }
@@ -57,7 +57,7 @@ export default function usePost() {
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         }
-        let response = await axios.get(`http://127.0.0.1:8001/api/user_posts`, config)
+        let response = await axios.get(`https://insta.local.stay/api/user_posts`, config)
         posts.value =  response.data.data
 
     }

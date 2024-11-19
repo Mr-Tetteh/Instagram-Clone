@@ -13,7 +13,7 @@ export default function useAuth() {
         const config = {
             headers: {Authorization: `Bearer ${token}`}
         }
-        let response = await axios.get(`http://127.0.0.1:8001/api/users/${id}`,  config);
+        let response = await axios.get(`https://insta.local.stay/api/users/${id}`,  config);
         user.value = response.data;
     }
 
@@ -25,7 +25,7 @@ export default function useAuth() {
             const config = {
                 headers: { Authorization: `Bearer ${token}` },
             };
-            let response = await axios.get(`http://127.0.0.1:8001/api/public_profile/${id}`, config);
+            let response = await axios.get(`https://insta.local.stay/public_profile/${id}`, config);
             profile.value = response.data;
         } catch (error) {
             alert(error)
@@ -41,7 +41,7 @@ export default function useAuth() {
             headers: {Authorization: `Bearer ${token}`}
         }
 
-        let response = await axios.post(`http://127.0.0.1:8001/api/logout`, {},config)
+        let response = await axios.post(`https://insta.local.stay/api/logout`, {},config)
         localStorage.removeItem("AUTH_TOKEN")
         localStorage.removeItem("USERNAME")
         localStorage.removeItem("FULL_NAME")

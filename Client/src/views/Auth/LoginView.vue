@@ -13,7 +13,7 @@ const state = reactive({
 const router = useRouter();
 const login = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8001/api/login', state.formInput);
+    const response = await axios.post('https://insta.local.stay/api/login', state.formInput);
     const token = response.data.authorisation.token
     localStorage.setItem("AUTH_TOKEN", token);
     localStorage.setItem("USERNAME", response.data.user.username);
