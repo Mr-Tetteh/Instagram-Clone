@@ -41,7 +41,7 @@ onMounted(() => get_all_post())
           </button>
         </div>
 
-        <p class="font-semibold">506 likes</p>
+        <p class="font-semibold">507 likes</p>
 
         <p class="leading-relaxed">
           {{ post.title }}<br>
