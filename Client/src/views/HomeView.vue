@@ -23,7 +23,7 @@ onMounted(() => get_all_post())
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-blue-400">
             <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49...Z" clip-rule="evenodd"/>
           </svg>
-          <span class="text-gray-400">.{{ post.created_at }}</span>
+          <span class="text-gray-400">.{{ post.created_at}}</span>
         </div>
 
         <img :src="post.image" alt="post" height="60%" class="border-2 border-gray-600 rounded-lg">
